@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project version='8' encrypted='1'>
+	<steps type='0'>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<name>Clean project folder</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr><![CDATA[copy Simcity_bak.mkb Simcity.mkb
+del Simcity_bak.mkb]]></CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>rollback mkb file</name>
+			<startin>%workdir%</startin>
+		</step>
+		<step action='Delete Files'>
+			<ContinueFail type='11'>-1</ContinueFail>
+			<Ext><![CDATA[svninfo.txt
+folder_name.txt
+vblVersionCode.txt
+vblVersionName.txt
+vblBuildNumber.txt]]></Ext>
+			<HideOn type='11'>-1</HideOn>
+			<LogDel type='11'>-1</LogDel>
+			<Path>%workdir%</Path>
+			<SysOn type='11'>-1</SysOn>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>1</indent>
+			<name>Delete temp files</name>
+		</step></steps>
+</project>

@@ -9,6 +9,7 @@
 			<MacroName>IsBuildData</MacroName>
 			<MacroValue>0</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
 			<description>0</description>
 			<indent type='3'>1</indent>
 			<name>Set IsBuildData</name>
@@ -17,6 +18,7 @@
 			<MacroName>build_type</MacroName>
 			<MacroValue>qa</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
 			<description>qa</description>
 			<indent type='3'>1</indent>
 			<name>Set build type</name>
@@ -25,6 +27,7 @@
 			<MacroName>workdir</MacroName>
 			<MacroValue>E:/simcity/trunk/client</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
 			<description>E:/simcity/trunk/client</description>
 			<indent type='3'>1</indent>
 			<name>Set work folder</name>
@@ -33,6 +36,7 @@
 			<MacroName>commit_versioninfo</MacroName>
 			<MacroValue>1</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
 			<description>1</description>
 			<indent type='3'>1</indent>
 			<name>Set commit version info</name>
@@ -41,6 +45,7 @@
 			<MacroName>target</MacroName>
 			<MacroValue>Android_latest</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
 			<condcompareto>qa</condcompareto>
 			<condexpr>%build_type%</condexpr>
 			<description>Android_latest</description>
@@ -51,6 +56,7 @@
 			<MacroName>server_name</MacroName>
 			<MacroValue>Kingsoft</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
 			<condcompareto>release</condcompareto>
 			<condexpr>%build_type%</condexpr>
 			<description>Kingsoft</description>
