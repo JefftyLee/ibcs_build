@@ -1,0 +1,740 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project version='8' encrypted='1'>
+	<steps type='0'>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<name>Simcity Android Build</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>IsBuildData</MacroName>
+			<MacroValue>0</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<description>0</description>
+			<indent type='3'>1</indent>
+			<name>Set IsBuildData</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>build_type</MacroName>
+			<MacroValue>qa</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<description>qa</description>
+			<indent type='3'>1</indent>
+			<name>Set build type</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>workdir</MacroName>
+			<MacroValue>E:/simcity/trunk/client</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<description>E:/simcity/trunk/client</description>
+			<indent type='3'>1</indent>
+			<name>Set work folder</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>commit_versioninfo</MacroName>
+			<MacroValue>1</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<description>1</description>
+			<indent type='3'>1</indent>
+			<name>Set commit version info</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>target</MacroName>
+			<MacroValue>Android_latest</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<condcompareto>qa</condcompareto>
+			<condexpr>%build_type%</condexpr>
+			<description>Android_latest</description>
+			<indent type='3'>1</indent>
+			<name>target</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>server_name</MacroName>
+			<MacroValue>Kingsoft</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<condcompareto>release</condcompareto>
+			<condexpr>%build_type%</condexpr>
+			<description>Kingsoft</description>
+			<indent type='3'>1</indent>
+			<name>server_name</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>temp variables</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>svn_revision</MacroName>
+			<MacroValue>0</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>svn_revision</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>build_version</MacroName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>build_version</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>build_versionCode</MacroName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>build_versionCode</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>build_versionString</MacroName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>build_versionString</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>build_number</MacroName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>build_number</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>build_folder</MacroName>
+			<MacroValue>1</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>build_folder</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr>svn update %workdir%</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>1</indent>
+			<name>update codebase</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>1</indent>
+			<name>SVN sync failed</name>
+		</step>
+		<step action='Send Mail'>
+			<From>jacky@bw30.com</From>
+			<Message><![CDATA[SVN代码拉取失败。
+此为自动邮件，请勿回复。]]></Message>
+			<Password encrypted='1'>N83IPOE8ZOG8aq2496Grg2P9D5XvLluW</Password>
+			<Server>mail.bw30.com</Server>
+			<Subject>Auto Build Failed</Subject>
+			<Timeout>30</Timeout>
+			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
+			<UserName>jacky@bw30.com</UserName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Send svn failed mail</name>
+		</step>
+		<step action='Exit'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Exit</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>Setup variables</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr><![CDATA[svn info %workdir% > svninfo.txt]]></CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>get codebase revision</name>
+			<startin>%workdir%</startin>
+		</step>
+		<step action='Read File'>
+			<Encoding>UTF-8</Encoding>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>%workdir%\svninfo.txt</FileIn>
+			<Find>Revision: \d+</Find>
+			<Macro>svn_revision</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Read revision from file</name>
+		</step>
+		<step action='Read File'>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<Find>\d+</Find>
+			<Input type='3'>1</Input>
+			<Macro>svn_revision</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<String>%svn_revision%</String>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Read revision number</name>
+		</step>
+		<step action='Read File'>
+			<Encoding>UTF-8</Encoding>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>vblVersionInfo.txt</FileIn>
+			<Find>android-version-code=\d+</Find>
+			<Macro>build_versionCode</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Read version code from file</name>
+		</step>
+		<step action='Read File'>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<Find>\d+</Find>
+			<Input type='3'>1</Input>
+			<Macro>build_versionCode</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<String>%build_versionCode%</String>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Read version code</name>
+		</step>
+		<step action='Read File'>
+			<Encoding>UTF-8</Encoding>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>vblVersionInfo.txt</FileIn>
+			<Find>android-version-string=\d+.\d+.</Find>
+			<Macro>build_versionString</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Read version string from file</name>
+		</step>
+		<step action='Read File'>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<Find>\d+.\d+.</Find>
+			<Input type='3'>1</Input>
+			<Macro>build_versionString</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<String>%build_versionString%</String>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Read version string</name>
+		</step>
+		<step action='Read File'>
+			<Encoding>UTF-8</Encoding>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>vblVersionInfo.txt</FileIn>
+			<Find>build_number_%DATE%=\d+</Find>
+			<Macro>build_number</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>2</indent>
+			<name>Read build number from file</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>3</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>2</indent>
+			<name>today's build</name>
+		</step>
+		<step action='Read File'>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<Find>=\d+</Find>
+			<Input type='3'>1</Input>
+			<Macro>build_number</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<String>%build_number%</String>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Read build number value</name>
+		</step>
+		<step action='Read File'>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<Find>\d+</Find>
+			<Input type='3'>1</Input>
+			<Macro>build_number</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<String>%build_number%</String>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Read build number</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>2</indent>
+			<name>new day's build</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>build_number</MacroName>
+			<MacroValue>000</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Reset build_number</name>
+		</step>
+		<step action='Run Program'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<command>python build_version_info.py %workdir%/ %build_versionCode% %build_versionString% %DATE% %build_number%</command>
+			<indent type='3'>2</indent>
+			<name>calculate version info</name>
+			<outputfrom type='3'>1</outputfrom>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>Clean work folder</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr>copy Simcity.mkb Simcity_bak.mkb</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>copy mkb file</name>
+			<startin>%workdir%</startin>
+		</step>
+		<step action='Replace in File'>
+			<Encoding>UTF-8</Encoding>
+			<FileIn>%workdir%\Simcity.mkb</FileIn>
+			<FileOut>%workdir%\Simcity.mkb</FileOut>
+			<Find># define DEFINE_PLATFORM_ANDROID</Find>
+			<NoModS type='11'>-1</NoModS>
+			<Replace>define DEFINE_PLATFORM_ANDROID</Replace>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Open android build define</name>
+		</step>
+		<step action='Replace in File'>
+			<Encoding>UTF-8</Encoding>
+			<FileIn>%workdir%\Simcity.mkb</FileIn>
+			<FileOut>%workdir%\Simcity.mkb</FileOut>
+			<Find>define DEFINE_PLATFORM_IPHONE</Find>
+			<NoModS type='11'>-1</NoModS>
+			<Replace># define DEFINE_PLATFORM_IPHONE</Replace>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Close ios build define</name>
+		</step>
+		<step action='Read File'>
+			<Encoding>UTF-8</Encoding>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>%workdir%\vblVersionCode.txt</FileIn>
+			<Macro>build_versionCode</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>2</indent>
+			<name>Read version code from file</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Apk build failed</name>
+		</step>
+		<step action='Send Mail'>
+			<From>jacky@bw30.com</From>
+			<Message><![CDATA[版本号读取失败。
+此为自动邮件，请勿回复。]]></Message>
+			<Password encrypted='1'>N83IPOE8ZOG8aq2496Grg2P9D5XvLluW</Password>
+			<Server>mail.bw30.com</Server>
+			<Subject>Auto Build Failed</Subject>
+			<Timeout>30</Timeout>
+			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
+			<UserName>jacky@bw30.com</UserName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Send apk build failed mail</name>
+		</step>
+		<step action='Exit'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Exit</name>
+		</step>
+		<step action='Read File'>
+			<Encoding>UTF-8</Encoding>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>%workdir%\vblVersionName.txt</FileIn>
+			<Macro>build_version</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>2</indent>
+			<name>Read version name from file</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Apk build failed</name>
+		</step>
+		<step action='Send Mail'>
+			<From>jacky@bw30.com</From>
+			<Message><![CDATA[版本名读取失败。
+此为自动邮件，请勿回复。]]></Message>
+			<Password encrypted='1'>N83IPOE8ZOG8aq2496Grg2P9D5XvLluW</Password>
+			<Server>mail.bw30.com</Server>
+			<Subject>Auto Build Failed</Subject>
+			<Timeout>30</Timeout>
+			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
+			<UserName>jacky@bw30.com</UserName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Send apk build failed mail</name>
+		</step>
+		<step action='Exit'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Exit</name>
+		</step>
+		<step action='Replace in File'>
+			<Encoding>UTF-8</Encoding>
+			<FileIn>%workdir%\Simcity.mkb</FileIn>
+			<FileOut>%workdir%\Simcity.mkb</FileOut>
+			<Find>android-version-code=\d+</Find>
+			<NoModS type='11'>-1</NoModS>
+			<Replace>android-version-code=%build_versionCode%</Replace>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>update build version code</name>
+		</step>
+		<step action='Replace in File'>
+			<Encoding>UTF-8</Encoding>
+			<FileIn>%workdir%\Simcity.mkb</FileIn>
+			<FileOut>%workdir%\Simcity.mkb</FileOut>
+			<Find>version-string='\d+.\d+.\d+'</Find>
+			<NoModS type='11'>-1</NoModS>
+			<Replace>version-string=%build_version%</Replace>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>update build version name</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>1</condcompareto>
+			<condcomparison type='3'>3</condcomparison>
+			<condexpr>%IsBuildData%</condexpr>
+			<indent type='3'>1</indent>
+			<name>build data</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr>rd /s /q data-ram</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>2</indent>
+			<name>Delete resource folder</name>
+			<startin>%workdir%</startin>
+		</step>
+		<step action='Batch File'>
+			<CmdFile>%workdir%\buildAndroid.bat</CmdFile>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Batch File</name>
+			<startin>%workdir%</startin>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Build data failed</name>
+		</step>
+		<step action='Send Mail'>
+			<From>jacky@bw30.com</From>
+			<Message><![CDATA[数据打包失败。
+此为自动邮件，请勿回复。]]></Message>
+			<Password encrypted='1'>N83IPOE8ZOG8aq2496Grg2P9D5XvLluW</Password>
+			<Server>mail.bw30.com</Server>
+			<Subject>Auto Build Failed</Subject>
+			<Timeout>30</Timeout>
+			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
+			<UserName>jacky@bw30.com</UserName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Send data build failed mail</name>
+		</step>
+		<step action='Exit'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Exit</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>build apk</name>
+		</step>
+		<step action='Write File'>
+			<Encoding>UTF-8</Encoding>
+			<Filename>%workdir%\app_buildmode.mkf</Filename>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>release</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%build_type%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Remove prod define</name>
+		</step>
+		<step action='Write File'>
+			<Encoding>UTF-8</Encoding>
+			<Filename>%workdir%\app_buildmode.mkf</Filename>
+			<Text>define DEFINE_ENVIRONMENT_PROD</Text>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>release</condcompareto>
+			<condcomparison type='3'>3</condcomparison>
+			<condexpr>%build_type%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Add prod define</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr>Simcity.mkb --arm --compiler=gcc --release --clean --make</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>build project</name>
+			<startin>%workdir%</startin>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Code compile failed</name>
+		</step>
+		<step action='Send Mail'>
+			<From>jacky@bw30.com</From>
+			<Message><![CDATA[代码编译失败。
+此为自动邮件，请勿回复。]]></Message>
+			<Password encrypted='1'>N83IPOE8ZOG8aq2496Grg2P9D5XvLluW</Password>
+			<Server>mail.bw30.com</Server>
+			<Subject>Auto Build Failed</Subject>
+			<Timeout>30</Timeout>
+			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
+			<UserName>jacky@bw30.com</UserName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Send code compile failed mail</name>
+		</step>
+		<step action='Exit'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Exit</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr>C:\Marmalade\8.4\s3e\bin\s3e_deploy deploy_config.py -n --config="%target%" --os="android" --arch="arm" --gcc</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>deploy apk</name>
+			<startin>%workdir%\build_simcity_vc14</startin>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>0</condcompareto>
+			<condcomparison type='3'>4</condcomparison>
+			<condexpr>%LASTSTEP_STATUS%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Apk build failed</name>
+		</step>
+		<step action='Send Mail'>
+			<From>jacky@bw30.com</From>
+			<Message><![CDATA[apk打包失败。
+此为自动邮件，请勿回复。]]></Message>
+			<Password encrypted='1'>N83IPOE8ZOG8aq2496Grg2P9D5XvLluW</Password>
+			<Server>mail.bw30.com</Server>
+			<Subject>Auto Build Failed</Subject>
+			<Timeout>30</Timeout>
+			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
+			<UserName>jacky@bw30.com</UserName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Send apk build failed mail</name>
+		</step>
+		<step action='Exit'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>3</indent>
+			<name>Exit</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>deliver build</name>
+		</step>
+		<step action='Write File'>
+			<Encoding>UTF-8</Encoding>
+			<Filename>%workdir%\folder_name.txt</Filename>
+			<Text>%DATE%</Text>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Write build folder name to file</name>
+		</step>
+		<step action='Replace in File'>
+			<FileIn>%workdir%\folder_name.txt</FileIn>
+			<FileOut>%workdir%\folder_name.txt</FileOut>
+			<Find>/</Find>
+			<NoModS type='11'>-1</NoModS>
+			<Replace>-</Replace>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>fix folder name</name>
+		</step>
+		<step action='Read File'>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>%workdir%\folder_name.txt</FileIn>
+			<Macro>build_folder</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Read folder name</name>
+		</step>
+		<step action='Create Folder'>
+			<Path>E:\simcity\final_build\%build_folder%</Path>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Create Folder</name>
+		</step>
+		<step action='Delete Files'>
+			<Ext>SimcityChina_Android_%server_name%_%build_type%_v%build_version%_r%svn_revision%.apk</Ext>
+			<HideOn type='11'>-1</HideOn>
+			<LogDel type='11'>-1</LogDel>
+			<Path>E:\simcity\final_build\%build_folder%</Path>
+			<SysOn type='11'>-1</SysOn>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Delete old builds</name>
+		</step>
+		<step action='Copy Files'>
+			<Converted type='11'>-1</Converted>
+			<Delay>15</Delay>
+			<DestDir>E:\simcity\final_build\%build_folder%</DestDir>
+			<Ext>Simcity.apk</Ext>
+			<Incremental type='11'>-1</Incremental>
+			<LogCopied type='11'>-1</LogCopied>
+			<ReadOnly type='11'>-1</ReadOnly>
+			<Retries>10</Retries>
+			<SourceDir>%workdir%\build_simcity_vc14\deployments\%target%\android\release\arm</SourceDir>
+			<TBD type='11'>-1</TBD>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Copy build</name>
+		</step>
+		<step action='Rename Files'>
+			<Dir>E:\simcity\final_build\%build_folder%</Dir>
+			<Ext>Simcity.apk</Ext>
+			<Find>Simcity</Find>
+			<FirstOnly type='11'>-1</FirstOnly>
+			<HideOn type='11'>-1</HideOn>
+			<LogRenamed type='11'>-1</LogRenamed>
+			<Replace>SimcityChina_Android_%server_name%_%build_type%_v%build_version%_r%svn_revision%</Replace>
+			<SysOn type='11'>-1</SysOn>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Rename build name</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>Clean before exit</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr><![CDATA[copy Simcity_bak.mkb Simcity.mkb
+del Simcity_bak.mkb]]></CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>rollback mkb file</name>
+			<startin>%workdir%</startin>
+		</step>
+		<step action='Read File'>
+			<Encoding>UTF-8</Encoding>
+			<FailNoMatch type='11'>-1</FailNoMatch>
+			<FileIn>%workdir%\vblBuildNumber.txt</FileIn>
+			<Macro>build_number</Macro>
+			<NoModS type='11'>-1</NoModS>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>2</indent>
+			<name>Read build number from file</name>
+		</step>
+		<step action='Write File'>
+			<Encoding>UTF-8</Encoding>
+			<Filename>vblVersionInfo.txt</Filename>
+			<Text><![CDATA[android-version-code=%build_versionCode%
+android-version-string=%build_versionString%
+build_number_%DATE%=%build_number%]]></Text>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>1</condcompareto>
+			<condcomparison type='3'>3</condcomparison>
+			<condexpr>%commit_versioninfo%</condexpr>
+			<indent type='3'>2</indent>
+			<name>update version info</name>
+		</step>
+		<step action='Batch File'>
+			<CmdStr>svn commit vblVersionInfo.txt -m "update version info"</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>1</condcompareto>
+			<condcomparison type='3'>3</condcomparison>
+			<condexpr>%commit_versioninfo%</condexpr>
+			<indent type='3'>2</indent>
+			<name>commit build version info</name>
+		</step>
+		<step action='Delete Files'>
+			<Ext><![CDATA[svninfo.txt
+folder_name.txt
+vblVersionCode.txt
+vblVersionName.txt
+vblBuildNumber.txt]]></Ext>
+			<HideOn type='11'>-1</HideOn>
+			<LogDel type='11'>-1</LogDel>
+			<Path>%workdir%</Path>
+			<SysOn type='11'>-1</SysOn>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Delete temp files</name>
+		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>Build Success</name>
+		</step>
+		<step action='Send Mail'>
+			<From>jacky@bw30.com</From>
+			<Message><![CDATA[构建成功。
+APK: SimcityChina_Android_%server_name%_%build_type%_v%build_version%_r%svn_revision%.apk
+当前版为 %build_version%
+SVN版本为 %svn_revision%
+此为自动邮件，请勿回复。]]></Message>
+			<Password encrypted='1'>N83IPOE8ZOG8aq2496Grg2P9D5XvLluW</Password>
+			<Server>mail.bw30.com</Server>
+			<Subject>Auto Build Succeed</Subject>
+			<Timeout>30</Timeout>
+			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
+			<UserName>jacky@bw30.com</UserName>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Send build success mail</name>
+		</step>
+		<step action='Exit'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>2</indent>
+			<name>Exit</name>
+		</step></steps>
+</project>
