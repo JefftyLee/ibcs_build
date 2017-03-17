@@ -107,6 +107,15 @@
 			<name>build_folder</name>
 		</step>
 		<step action='Batch File'>
+			<CmdStr>git.exe pull origin master</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<indent type='3'>1</indent>
+			<name>update project</name>
+			<startin>../</startin>
+		</step>
+		<step action='Batch File'>
 			<CmdStr>svn update %workdir%</CmdStr>
 			<CmdType type='3'>1</CmdType>
 			<NoEcho type='11'>-1</NoEcho>
@@ -686,7 +695,8 @@ build_number_%DATE%=%build_number%]]></Text>
 			<name>update version info</name>
 		</step>
 		<step action='Batch File'>
-			<CmdStr>svn commit vblVersionInfo.txt -m "update version info"</CmdStr>
+			<CmdStr><![CDATA[git commit -am "update version info"
+git push https://JefftyLee:Jeffty840331@github.com/JefftyLee/ibcs_build.git]]></CmdStr>
 			<CmdType type='3'>1</CmdType>
 			<NoEcho type='11'>-1</NoEcho>
 			<buildfailsteps type='11'>0</buildfailsteps>
@@ -695,6 +705,7 @@ build_number_%DATE%=%build_number%]]></Text>
 			<condexpr>%commit_versioninfo%</condexpr>
 			<indent type='3'>2</indent>
 			<name>commit build version info</name>
+			<startin>../</startin>
 		</step>
 		<step action='Delete Files'>
 			<Ext><![CDATA[svninfo.txt
