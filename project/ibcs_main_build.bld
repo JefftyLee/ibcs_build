@@ -16,7 +16,7 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>build_type</MacroName>
-			<MacroValue>qa</MacroValue>
+			<MacroValue>release</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
 			<description>qa</description>
@@ -34,7 +34,7 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>commit_versioninfo</MacroName>
-			<MacroValue>1</MacroValue>
+			<MacroValue>0</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
 			<description>1</description>
@@ -43,25 +43,29 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>target</MacroName>
-			<MacroValue>Android_latest</MacroValue>
+			<MacroValue>Android_prod_qa</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
-			<condcompareto>qa</condcompareto>
-			<condexpr>%build_type%</condexpr>
 			<description>Android_latest</description>
 			<indent type='3'>1</indent>
 			<name>target</name>
 		</step>
 		<step action='Set Macro'>
 			<MacroName>server_name</MacroName>
-			<MacroValue>Kingsoft</MacroValue>
+			<MacroValue>Prod_qa</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
-			<condcompareto>release</condcompareto>
-			<condexpr>%build_type%</condexpr>
 			<description>Kingsoft</description>
 			<indent type='3'>1</indent>
 			<name>server_name</name>
+		</step>
+		<step action='Set Macro'>
+			<MacroName>compile_code</MacroName>
+			<MacroValue>0</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<indent type='3'>1</indent>
+			<name>Set compile_code</name>
 		</step>
 		<step action='Group'>
 			<buildfailsteps type='11'>0</buildfailsteps>
@@ -508,12 +512,20 @@
 			<indent type='3'>2</indent>
 			<name>Add prod define</name>
 		</step>
+		<step action='Group'>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>1</condcompareto>
+			<condcomparison type='3'>3</condcomparison>
+			<condexpr>%compile_code%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Compile</name>
+		</step>
 		<step action='Batch File'>
 			<CmdStr>Simcity.mkb --arm --compiler=gcc --release --clean --make</CmdStr>
 			<CmdType type='3'>1</CmdType>
 			<NoEcho type='11'>-1</NoEcho>
 			<buildfailsteps type='11'>0</buildfailsteps>
-			<indent type='3'>2</indent>
+			<indent type='3'>3</indent>
 			<name>build project</name>
 			<startin>%workdir%</startin>
 		</step>
@@ -522,7 +534,7 @@
 			<condcompareto>0</condcompareto>
 			<condcomparison type='3'>4</condcomparison>
 			<condexpr>%LASTSTEP_STATUS%</condexpr>
-			<indent type='3'>2</indent>
+			<indent type='3'>3</indent>
 			<name>Code compile failed</name>
 		</step>
 		<step action='Send Mail'>
@@ -536,12 +548,12 @@
 			<To>jacky@bw30.com;paul@bw30.com;john@bw30.com;steve@bw30.com;edward@bw30.com</To>
 			<UserName>jacky@bw30.com</UserName>
 			<buildfailsteps type='11'>0</buildfailsteps>
-			<indent type='3'>3</indent>
+			<indent type='3'>4</indent>
 			<name>Send code compile failed mail</name>
 		</step>
 		<step action='Exit'>
 			<buildfailsteps type='11'>0</buildfailsteps>
-			<indent type='3'>3</indent>
+			<indent type='3'>4</indent>
 			<name>Exit</name>
 		</step>
 		<step action='Batch File'>
