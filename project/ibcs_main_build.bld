@@ -121,6 +121,15 @@
 			<startin>../</startin>
 		</step>
 		<step action='Batch File'>
+			<CmdStr>svn revert -R %workdir%</CmdStr>
+			<CmdType type='3'>1</CmdType>
+			<NoEcho type='11'>-1</NoEcho>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
+			<indent type='3'>1</indent>
+			<name>clean codebase</name>
+		</step>
+		<step action='Batch File'>
 			<CmdStr>svn update %workdir%</CmdStr>
 			<CmdType type='3'>1</CmdType>
 			<NoEcho type='11'>-1</NoEcho>
