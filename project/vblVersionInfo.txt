@@ -1,3 +1,3 @@
-android-version-code=170022
+android-version-code=170023
 android-version-string=0.6.
-build_number_2017/3/23=001
+build_number_2017/3/24=001
