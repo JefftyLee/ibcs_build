@@ -67,6 +67,14 @@
 			<indent type='3'>1</indent>
 			<name>Set compile_code</name>
 		</step>
+		<step action='Set Macro'>
+			<MacroName>FakePayment</MacroName>
+			<MacroValue>0</MacroValue>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<checked type='11'>0</checked>
+			<indent type='3'>1</indent>
+			<name>Set FakePayment</name>
+		</step>
 		<step action='Group'>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<indent type='3'>1</indent>
@@ -520,6 +528,18 @@
 			<condexpr>%build_type%</condexpr>
 			<indent type='3'>2</indent>
 			<name>Add prod define</name>
+		</step>
+		<step action='Write File'>
+			<Append type='11'>-1</Append>
+			<Encoding>UTF-8</Encoding>
+			<Filename>%workdir%\app_buildmode.mkf</Filename>
+			<Text>\ndefine FAKE_PAYMENT_ENABLE</Text>
+			<buildfailsteps type='11'>0</buildfailsteps>
+			<condcompareto>1</condcompareto>
+			<condcomparison type='3'>3</condcomparison>
+			<condexpr>%FakePayment%</condexpr>
+			<indent type='3'>2</indent>
+			<name>Add FakePayment define</name>
 		</step>
 		<step action='Group'>
 			<buildfailsteps type='11'>0</buildfailsteps>
