@@ -533,7 +533,8 @@
 			<Append type='11'>-1</Append>
 			<Encoding>UTF-8</Encoding>
 			<Filename>%workdir%\app_buildmode.mkf</Filename>
-			<Text>\ndefine FAKE_PAYMENT_ENABLE</Text>
+			<Text><![CDATA[
+define FAKE_PAYMENT_ENABLE]]></Text>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<condcompareto>1</condcompareto>
 			<condcomparison type='3'>3</condcomparison>
