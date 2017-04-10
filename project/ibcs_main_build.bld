@@ -16,7 +16,7 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>build_type</MacroName>
-			<MacroValue>release</MacroValue>
+			<MacroValue>fakepayment</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
 			<description>qa</description>
@@ -43,7 +43,7 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>target</MacroName>
-			<MacroValue>Android_prod_qa</MacroValue>
+			<MacroValue>Android_latest</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
 			<description>Android_latest</description>
@@ -52,7 +52,7 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>server_name</MacroName>
-			<MacroValue>Prod_qa</MacroValue>
+			<MacroValue>Kingsoft</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
 			<description>Kingsoft</description>
@@ -61,7 +61,7 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>compile_code</MacroName>
-			<MacroValue>0</MacroValue>
+			<MacroValue>1</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
 			<indent type='3'>1</indent>
@@ -69,7 +69,7 @@
 		</step>
 		<step action='Set Macro'>
 			<MacroName>FakePayment</MacroName>
-			<MacroValue>0</MacroValue>
+			<MacroValue>1</MacroValue>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<checked type='11'>0</checked>
 			<indent type='3'>1</indent>
@@ -521,7 +521,8 @@
 		<step action='Write File'>
 			<Encoding>UTF-8</Encoding>
 			<Filename>%workdir%\app_buildmode.mkf</Filename>
-			<Text>define DEFINE_ENVIRONMENT_PROD</Text>
+			<Text><![CDATA[define DEFINE_ENVIRONMENT_PROD
+]]></Text>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<condcompareto>release</condcompareto>
 			<condcomparison type='3'>3</condcomparison>
@@ -533,8 +534,8 @@
 			<Append type='11'>-1</Append>
 			<Encoding>UTF-8</Encoding>
 			<Filename>%workdir%\app_buildmode.mkf</Filename>
-			<Text><![CDATA[
-define FAKE_PAYMENT_ENABLE]]></Text>
+			<Text><![CDATA[define FAKE_PAYMENT_ENABLE
+]]></Text>
 			<buildfailsteps type='11'>0</buildfailsteps>
 			<condcompareto>1</condcompareto>
 			<condcomparison type='3'>3</condcomparison>
@@ -555,6 +556,7 @@ define FAKE_PAYMENT_ENABLE]]></Text>
 			<CmdType type='3'>1</CmdType>
 			<NoEcho type='11'>-1</NoEcho>
 			<buildfailsteps type='11'>0</buildfailsteps>
+			<continueonfail type='3'>1</continueonfail>
 			<indent type='3'>3</indent>
 			<name>build project</name>
 			<startin>%workdir%</startin>
